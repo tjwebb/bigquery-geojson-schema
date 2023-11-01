@@ -20,11 +20,11 @@ def get_schema(filename):
                 keys.append(key)
 
                 if isinstance(value, str):
-                    schema.append({ 'name': key, 'value': 'STRING' })
+                    schema.append({ 'name': key, 'type': 'STRING' })
                 elif isinstance(value, int):
-                    schema.append({ 'name': key, 'value': 'INT64' })
+                    schema.append({ 'name': key, 'type': 'INT64' })
                 elif isinstance(value, float):
-                    schema.append({ 'name': key, 'value': 'FLOAT64' })
+                    schema.append({ 'name': key, 'type': 'FLOAT64' })
 
         schema.append({
             'name': 'geom',
@@ -41,8 +41,7 @@ if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('filename', required=True)
-    #parser.add_argument('--required', )
+    parser.add_argument('filename')
     args = parser.parse_args()
 
     print(json.dumps(get_schema(args.filename), indent=4))
